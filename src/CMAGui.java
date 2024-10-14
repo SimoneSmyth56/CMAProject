@@ -212,7 +212,7 @@ public class CMAGui {
         JComboBox<String> domesticQuartSold = new JComboBox<>(ynList.YNChoice);
         domesticQuartSold.setFont(new Font("Arial", Font.PLAIN, 12));
         domesticQuartSold.setSize(190, 20);
-        domesticQuartSold.setLocation(250, 250);
+        domesticQuartSold.setLocation(250, 280);
         domesticQuartSold.setSelectedItem(null);
         cpHomesSold.add(domesticQuartSold);
 
@@ -726,24 +726,30 @@ public class CMAGui {
                 double listPrice = Double.parseDouble(listPriceSold.getText());
                 double soldPrice = Double.parseDouble(soldPriceSold.getText());
 
+                CMAFunctionality.AddingProperties addHome = new CMAFunctionality.AddingProperties();
+
+                String addHomeSoldMessage = addHome.addHomesSold(address,livingRooms,bedrooms,bathrooms,garages,pool,flat,domesticQuarters,otherDetails,daysOnMarket,listPrice,soldPrice);
+
+                JOptionPane.showMessageDialog(null, addHomeSoldMessage);
+
             }
         });
         cpHomesSold.add(addButtonSold);
 
-        JButton uploadButtonSold = new JButton("Upload Image");
-        uploadButtonSold.setFont(new Font("Arial", Font.BOLD, 12));
-        uploadButtonSold.setSize(100, 20);
-        uploadButtonSold.setLocation(310, 500);
-        uploadButtonSold.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                CMAFunctionality.FileHandling imageReader = new CMAFunctionality.FileHandling();
-                String imageUploadMessage = imageReader.ImageUploader();
-
-                JOptionPane.showMessageDialog(null, imageUploadMessage);
-            }
-        });
-        cpHomesSold.add(uploadButtonSold);
+//        JButton uploadButtonSold = new JButton("Upload Image");
+//        uploadButtonSold.setFont(new Font("Arial", Font.BOLD, 12));
+//        uploadButtonSold.setSize(100, 20);
+//        uploadButtonSold.setLocation(310, 500);
+//        uploadButtonSold.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                CMAFunctionality.FileHandling imageReader = new CMAFunctionality.FileHandling();
+//                String imageUploadMessage = imageReader.ImageUploader();
+//
+//                JOptionPane.showMessageDialog(null, imageUploadMessage);
+//            }
+//        });
+//        cpHomesSold.add(uploadButtonSold);
 
         JButton nextButtonSold = new JButton("Next");
         nextButtonSold.setFont(new Font("Arial", Font.BOLD, 12));
@@ -872,24 +878,29 @@ public class CMAGui {
                 double listPrice = Double.parseDouble(listPriceExpired.getText());
                 double soldPrice = Double.parseDouble(soldPriceExpired.getText());
 
+//                CMAFunctionality.AddingProperties addHome = new CMAFunctionality.AddingProperties();
+//
+//                String addHomeSoldMessage = addHome.addHomesSold(address,livingRooms,bedrooms,bathrooms,garages,pool,flat,domesticQuarters,otherDetails,daysOnMarket,listPrice,soldPrice);
+//
+//                JOptionPane.showMessageDialog(null, addHomeSoldMessage);
             }
         });
         cpExpiredListings.add(addButtonExpired);
 
-        JButton uploadButtonExpired = new JButton("Upload Image");
-        uploadButtonExpired.setFont(new Font("Arial", Font.BOLD, 12));
-        uploadButtonExpired.setSize(100, 20);
-        uploadButtonExpired.setLocation(310, 500);
-        uploadButtonExpired.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                CMAFunctionality.FileHandling imageReader = new CMAFunctionality.FileHandling();
-                String imageUploadMessage = imageReader.ImageUploader();
-
-                JOptionPane.showMessageDialog(null, imageUploadMessage);
-            }
-        });
-        cpExpiredListings.add(uploadButtonExpired);
+//        JButton uploadButtonExpired = new JButton("Upload Image");
+//        uploadButtonExpired.setFont(new Font("Arial", Font.BOLD, 12));
+//        uploadButtonExpired.setSize(100, 20);
+//        uploadButtonExpired.setLocation(310, 500);
+//        uploadButtonExpired.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                CMAFunctionality.FileHandling imageReader = new CMAFunctionality.FileHandling();
+//                String imageUploadMessage = imageReader.ImageUploader();
+//
+//                JOptionPane.showMessageDialog(null, imageUploadMessage);
+//            }
+//        });
+//        cpExpiredListings.add(uploadButtonExpired);
 
         JButton nextButtonExpired = new JButton("Next");
         nextButtonExpired.setFont(new Font("Arial", Font.BOLD, 12));
