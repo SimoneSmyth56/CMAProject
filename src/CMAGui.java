@@ -212,7 +212,7 @@ public class CMAGui {
         JComboBox<String> domesticQuartSold = new JComboBox<>(ynList.YNChoice);
         domesticQuartSold.setFont(new Font("Arial", Font.PLAIN, 12));
         domesticQuartSold.setSize(190, 20);
-        domesticQuartSold.setLocation(250, 280);
+        domesticQuartSold.setLocation(250, 250);
         domesticQuartSold.setSelectedItem(null);
         cpHomesSold.add(domesticQuartSold);
 
