@@ -9,6 +9,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class CMAGui {
+    JTextArea addressForSale, addressSold, otherDetailForSale, otherDetailSold, addressExpired, otherDetailExpired ;
+    JTextField erfForSale, listPriceForSale, erfSold, listPriceSold, soldPriceSold, erfExpired, listPriceExpired, soldPriceExpired;
+    JComboBox<String> daysOnMarketSold, daysOnMarketForSale, livingRoomForSale, bedroomForSale, bathroomForSale, garageForSale, poolForSale, flatForSale, domesticQuartForSale, livingRoomSold, bedroomSold, bathroomSold, garageSold, poolSold, flatSold, domesticQuartSold, livingRoomExpired, bedroomExpired, bathroomExpired, garageExpired, poolExpired, flatExpired, domesticQuartExpired, daysOnMarketExpired;
+
     CMAFunctionality.numberList numberList = new CMAFunctionality.numberList();
     CMAFunctionality.YNList ynList = new CMAFunctionality.YNList();
 
@@ -71,7 +75,7 @@ public class CMAGui {
         titleLabel.setForeground(Color.white);
         topLabelPanel.add(titleLabel);
 
-        BufferedImage logoImage = null;
+        BufferedImage logoImage;
         try {
             logoImage = ImageIO.read(new File("images/logo.jpg"));
 
@@ -107,7 +111,7 @@ public class CMAGui {
         addressLblSold.setLocation(50, 15);
         cpHomesSold.add(addressLblSold);
 
-        JTextArea addressSold= new JTextArea();
+        addressSold = new JTextArea();
         addressSold.setFont(new Font("Arial", Font.PLAIN, 12));
         addressSold.setSize(250,50);
         addressSold.setLocation(255, 15);
@@ -119,7 +123,7 @@ public class CMAGui {
         erfLblSold.setLocation(50, 70);
         cpHomesSold.add(erfLblSold);
 
-        JTextField erfSold = new JTextField();
+        erfSold = new JTextField();
         erfSold.setFont(new Font("Arial", Font.PLAIN, 12));
         erfSold.setSize(100, 20);
         erfSold.setLocation(250, 70);
@@ -131,7 +135,7 @@ public class CMAGui {
         livingRoomLblSold.setLocation(50, 100);
         cpHomesSold.add(livingRoomLblSold);
 
-        JComboBox<String> livingRoomSold = new JComboBox<>(numberList.numberChoice);
+        livingRoomSold = new JComboBox<>(numberList.numberChoice);
         livingRoomSold.setFont(new Font("Arial", Font.PLAIN, 12));
         livingRoomSold.setSize(190, 20);
         livingRoomSold.setLocation(250, 100);
@@ -144,7 +148,7 @@ public class CMAGui {
         bedroomLblSold.setLocation(50, 130);
         cpHomesSold.add(bedroomLblSold);
 
-        JComboBox<String> bedroomSold = new JComboBox<>(numberList.numberChoice);
+        bedroomSold = new JComboBox<>(numberList.numberChoice);
         bedroomSold.setFont(new Font("Arial", Font.PLAIN, 12));
         bedroomSold.setSize(190, 20);
         bedroomSold.setLocation(250, 130);
@@ -157,7 +161,7 @@ public class CMAGui {
         bathroomLblSold.setLocation(50, 160);
         cpHomesSold.add(bathroomLblSold);
 
-        JComboBox<String> bathroomSold = new JComboBox<>(numberList.numberChoice);
+        bathroomSold = new JComboBox<>(numberList.numberChoice);
         bathroomSold.setFont(new Font("Arial", Font.PLAIN, 12));
         bathroomSold.setSize(190, 20);
         bathroomSold.setLocation(250, 160);
@@ -170,7 +174,7 @@ public class CMAGui {
         garageLblSold.setLocation(50, 190);
         cpHomesSold.add(garageLblSold);
 
-        JComboBox<String> garageSold = new JComboBox<>(numberList.numberChoice);
+        garageSold = new JComboBox<>(numberList.numberChoice);
         garageSold.setFont(new Font("Arial", Font.PLAIN, 12));
         garageSold.setSize(190, 20);
         garageSold.setLocation(250, 190);
@@ -183,7 +187,7 @@ public class CMAGui {
         poolLblSold.setLocation(50, 220);
         cpHomesSold.add(poolLblSold);
 
-        JComboBox<String> poolSold = new JComboBox<>(ynList.YNChoice);
+        poolSold = new JComboBox<>(ynList.YNChoice);
         poolSold.setFont(new Font("Arial", Font.PLAIN, 12));
         poolSold.setSize(190, 20);
         poolSold.setLocation(250, 220);
@@ -196,7 +200,7 @@ public class CMAGui {
         flatLblSold.setLocation(50, 250);
         cpHomesSold.add(flatLblSold);
 
-        JComboBox<String> flatSold = new JComboBox<>(ynList.YNChoice);
+        flatSold = new JComboBox<>(ynList.YNChoice);
         flatSold.setFont(new Font("Arial", Font.PLAIN, 12));
         flatSold.setSize(190, 20);
         flatSold.setLocation(250, 250);
@@ -209,7 +213,7 @@ public class CMAGui {
         domesticQuartLblSold.setLocation(50, 280);
         cpHomesSold.add(domesticQuartLblSold);
 
-        JComboBox<String> domesticQuartSold = new JComboBox<>(ynList.YNChoice);
+        domesticQuartSold = new JComboBox<>(ynList.YNChoice);
         domesticQuartSold.setFont(new Font("Arial", Font.PLAIN, 12));
         domesticQuartSold.setSize(190, 20);
         domesticQuartSold.setLocation(250, 280);
@@ -222,7 +226,7 @@ public class CMAGui {
         otherDetailLblSold.setLocation(50, 310);
         cpHomesSold.add(otherDetailLblSold);
 
-        JTextArea otherDetailSold= new JTextArea();
+        otherDetailSold= new JTextArea();
         otherDetailSold.setFont(new Font("Arial", Font.PLAIN, 12));
         otherDetailSold.setSize(250,70);
         otherDetailSold.setLocation(255, 310);
@@ -234,12 +238,12 @@ public class CMAGui {
         daysLblSold.setLocation(50, 390);
         cpHomesSold.add(daysLblSold);
 
-        JComboBox<String> daysSold = new JComboBox<>(numberList.numberChoice);
-        daysSold.setFont(new Font("Arial", Font.PLAIN, 12));
-        daysSold.setSize(190, 20);
-        daysSold.setLocation(250, 390);
-        daysSold.setSelectedItem(null);
-        cpHomesSold.add(daysSold);
+        daysOnMarketSold = new JComboBox<>(numberList.numberChoice);
+        daysOnMarketSold.setFont(new Font("Arial", Font.PLAIN, 12));
+        daysOnMarketSold.setSize(190, 20);
+        daysOnMarketSold.setLocation(250, 390);
+        daysOnMarketSold.setSelectedItem(null);
+        cpHomesSold.add(daysOnMarketSold);
 
         JLabel listPriceLblSold = new JLabel("List Price");
         listPriceLblSold.setFont(new Font("Arial", Font.BOLD, 12));
@@ -253,7 +257,7 @@ public class CMAGui {
         currencyLblSold1.setLocation(240, 420);
         cpHomesSold.add(currencyLblSold1);
 
-        JTextField listPriceSold = new JTextField();
+        listPriceSold = new JTextField();
         listPriceSold.setFont(new Font("Arial", Font.PLAIN, 12));
         listPriceSold.setSize(120, 20);
         listPriceSold.setLocation(250, 420);
@@ -271,7 +275,7 @@ public class CMAGui {
         currencyLblSold2.setLocation(240, 450);
         cpHomesSold.add(currencyLblSold2);
 
-        JTextField soldPriceSold = new JTextField();
+        soldPriceSold = new JTextField();
         soldPriceSold.setFont(new Font("Arial", Font.PLAIN, 12));
         soldPriceSold.setSize(120, 20);
         soldPriceSold.setLocation(250, 450);
@@ -295,7 +299,7 @@ public class CMAGui {
         addressLblForSale.setLocation(50, 15);
         cpHomesForSale.add(addressLblForSale);
 
-        JTextArea addressForSale = new JTextArea();
+        addressForSale = new JTextArea();
         addressForSale.setFont(new Font("Arial", Font.PLAIN, 12));
         addressForSale.setSize(250,50);
         addressForSale.setLocation(255, 15);
@@ -307,7 +311,7 @@ public class CMAGui {
         erfLblForSale.setLocation(50, 70);
         cpHomesForSale.add(erfLblForSale);
 
-        JTextField erfForSale = new JTextField();
+        erfForSale = new JTextField();
         erfForSale.setFont(new Font("Arial", Font.PLAIN, 12));
         erfForSale.setSize(100, 20);
         erfForSale.setLocation(250, 70);
@@ -319,7 +323,7 @@ public class CMAGui {
         livingRoomLblForSale.setLocation(50, 100);
         cpHomesForSale.add(livingRoomLblForSale);
 
-        JComboBox<String> livingRoomForSale = new JComboBox<>(numberList.numberChoice);
+        livingRoomForSale = new JComboBox<>(numberList.numberChoice);
         livingRoomForSale.setFont(new Font("Arial", Font.PLAIN, 12));
         livingRoomForSale.setSize(190, 20);
         livingRoomForSale.setLocation(250, 100);
@@ -332,7 +336,7 @@ public class CMAGui {
         bedroomLblForSale.setLocation(50, 130);
         cpHomesForSale.add(bedroomLblForSale);
 
-        JComboBox<String> bedroomForSale = new JComboBox<>(numberList.numberChoice);
+        bedroomForSale = new JComboBox<>(numberList.numberChoice);
         bedroomForSale.setFont(new Font("Arial", Font.PLAIN, 12));
         bedroomForSale.setSize(190, 20);
         bedroomForSale.setLocation(250, 130);
@@ -345,7 +349,7 @@ public class CMAGui {
         bathroomLblForSale.setLocation(50, 160);
         cpHomesForSale.add(bathroomLblForSale);
 
-        JComboBox<String> bathroomForSale = new JComboBox<>(numberList.numberChoice);
+        bathroomForSale = new JComboBox<>(numberList.numberChoice);
         bathroomForSale.setFont(new Font("Arial", Font.PLAIN, 12));
         bathroomForSale.setSize(190, 20);
         bathroomForSale.setLocation(250, 160);
@@ -358,7 +362,7 @@ public class CMAGui {
         garageLblForSale.setLocation(50, 190);
         cpHomesForSale.add(garageLblForSale);
 
-        JComboBox<String> garageForSale = new JComboBox<>(numberList.numberChoice);
+        garageForSale = new JComboBox<>(numberList.numberChoice);
         garageForSale.setFont(new Font("Arial", Font.PLAIN, 12));
         garageForSale.setSize(190, 20);
         garageForSale.setLocation(250, 190);
@@ -371,7 +375,7 @@ public class CMAGui {
         poolLblForSale.setLocation(50, 220);
         cpHomesForSale.add(poolLblForSale);
 
-        JComboBox<String> poolForSale = new JComboBox<>(ynList.YNChoice);
+        poolForSale = new JComboBox<>(ynList.YNChoice);
         poolForSale.setFont(new Font("Arial", Font.PLAIN, 12));
         poolForSale.setSize(190, 20);
         poolForSale.setLocation(250, 220);
@@ -384,7 +388,7 @@ public class CMAGui {
         flatLblForSale.setLocation(50, 250);
         cpHomesForSale.add(flatLblForSale);
 
-        JComboBox<String> flatForSale = new JComboBox<>(ynList.YNChoice);
+        flatForSale = new JComboBox<>(ynList.YNChoice);
         flatForSale.setFont(new Font("Arial", Font.PLAIN, 12));
         flatForSale.setSize(190, 20);
         flatForSale.setLocation(250, 250);
@@ -397,7 +401,7 @@ public class CMAGui {
         domesticQuartLblForSale.setLocation(50, 280);
         cpHomesForSale.add(domesticQuartLblForSale);
 
-        JComboBox<String> domesticQuartForSale = new JComboBox<>(ynList.YNChoice);
+        domesticQuartForSale = new JComboBox<>(ynList.YNChoice);
         domesticQuartForSale.setFont(new Font("Arial", Font.PLAIN, 12));
         domesticQuartForSale.setSize(190, 20);
         domesticQuartForSale.setLocation(250, 280);
@@ -410,7 +414,7 @@ public class CMAGui {
         otherDetailLblForSale.setLocation(50, 310);
         cpHomesForSale.add(otherDetailLblForSale);
 
-        JTextArea otherDetailForSale = new JTextArea();
+        otherDetailForSale = new JTextArea();
         otherDetailForSale.setFont(new Font("Arial", Font.PLAIN, 12));
         otherDetailForSale.setSize(250,70);
         otherDetailForSale.setLocation(255, 310);
@@ -422,12 +426,12 @@ public class CMAGui {
         daysLblForSale.setLocation(50, 390);
         cpHomesForSale.add(daysLblForSale);
 
-        JComboBox<String> daysOptionForSale = new JComboBox<>(numberList.numberChoice);
-        daysOptionForSale.setFont(new Font("Arial", Font.PLAIN, 12));
-        daysOptionForSale.setSize(190, 20);
-        daysOptionForSale.setLocation(250, 390);
-        daysOptionForSale.setSelectedItem(null);
-        cpHomesForSale.add(daysOptionForSale);
+        daysOnMarketForSale = new JComboBox<>(numberList.numberChoice);
+        daysOnMarketForSale.setFont(new Font("Arial", Font.PLAIN, 12));
+        daysOnMarketForSale.setSize(190, 20);
+        daysOnMarketForSale.setLocation(250, 390);
+        daysOnMarketForSale.setSelectedItem(null);
+        cpHomesForSale.add(daysOnMarketForSale);
 
         JLabel listPriceLblForSale = new JLabel("List Price");
         listPriceLblForSale.setFont(new Font("Arial", Font.BOLD, 12));
@@ -441,29 +445,13 @@ public class CMAGui {
         currencyLblForSale1.setLocation(240, 420);
         cpHomesForSale.add(currencyLblForSale1);
 
-        JTextField listPriceForSale = new JTextField();
+        listPriceForSale = new JTextField();
         listPriceForSale.setFont(new Font("Arial", Font.PLAIN, 12));
         listPriceForSale.setSize(120, 20);
         listPriceForSale.setLocation(250, 420);
         cpHomesForSale.add(listPriceForSale);
 
-        JLabel soldPriceLblForSale = new JLabel("Sold Price");
-        soldPriceLblForSale.setFont(new Font("Arial", Font.BOLD, 12));
-        soldPriceLblForSale.setSize(100, 20);
-        soldPriceLblForSale.setLocation(50, 450);
-        cpHomesForSale.add(soldPriceLblForSale);
 
-        JLabel currencyLblForSale2 = new JLabel("R");
-        currencyLblForSale2.setFont(new Font("Arial", Font.BOLD, 12));
-        currencyLblForSale2.setSize(100, 20);
-        currencyLblForSale2.setLocation(240, 450);
-        cpHomesForSale.add(currencyLblForSale2);
-
-        JTextField soldPriceForSale = new JTextField();
-        soldPriceForSale.setFont(new Font("Arial", Font.PLAIN, 12));
-        soldPriceForSale.setSize(120, 20);
-        soldPriceForSale.setLocation(250, 450);
-        cpHomesForSale.add(soldPriceForSale);
 
         //Expired/Old listings frame-----------------------------------------------------
         JFrame expiredListingsFrame = new JFrame();
@@ -482,7 +470,7 @@ public class CMAGui {
         addressLblExpired.setLocation(50, 15);
         cpExpiredListings.add(addressLblExpired);
 
-        JTextArea addressExpired = new JTextArea();
+        addressExpired = new JTextArea();
         addressExpired.setFont(new Font("Arial", Font.PLAIN, 12));
         addressExpired.setSize(250,50);
         addressExpired.setLocation(255, 15);
@@ -494,7 +482,7 @@ public class CMAGui {
         erfLblExpired.setLocation(50, 70);
         cpExpiredListings.add(erfLblExpired);
 
-        JTextField erfExpired = new JTextField();
+        erfExpired = new JTextField();
         erfExpired.setFont(new Font("Arial", Font.PLAIN, 12));
         erfExpired.setSize(100, 20);
         erfExpired.setLocation(250, 70);
@@ -506,7 +494,7 @@ public class CMAGui {
         livingRoomLblExpired.setLocation(50, 100);
         cpExpiredListings.add(livingRoomLblExpired);
 
-        JComboBox<String> livingRoomExpired= new JComboBox<>(numberList.numberChoice);
+        livingRoomExpired= new JComboBox<>(numberList.numberChoice);
         livingRoomExpired.setFont(new Font("Arial", Font.PLAIN, 12));
         livingRoomExpired.setSize(190, 20);
         livingRoomExpired.setLocation(250, 100);
@@ -519,7 +507,7 @@ public class CMAGui {
         bedroomLblExpired.setLocation(50, 130);
         cpExpiredListings.add(bedroomLblExpired);
 
-        JComboBox<String> bedroomExpired = new JComboBox<>(numberList.numberChoice);
+        bedroomExpired = new JComboBox<>(numberList.numberChoice);
         bedroomExpired.setFont(new Font("Arial", Font.PLAIN, 12));
         bedroomExpired.setSize(190, 20);
         bedroomExpired.setLocation(250, 130);
@@ -532,7 +520,7 @@ public class CMAGui {
         bathroomLblExpired.setLocation(50, 160);
         cpExpiredListings.add(bathroomLblExpired);
 
-        JComboBox<String> bathroomExpired = new JComboBox<>(numberList.numberChoice);
+        bathroomExpired = new JComboBox<>(numberList.numberChoice);
         bathroomExpired.setFont(new Font("Arial", Font.PLAIN, 12));
         bathroomExpired.setSize(190, 20);
         bathroomExpired.setLocation(250, 160);
@@ -545,7 +533,7 @@ public class CMAGui {
         garageLblExpired.setLocation(50, 190);
         cpExpiredListings.add(garageLblExpired);
 
-        JComboBox<String> garageExpired = new JComboBox<>(numberList.numberChoice);
+        garageExpired = new JComboBox<>(numberList.numberChoice);
         garageExpired.setFont(new Font("Arial", Font.PLAIN, 12));
         garageExpired.setSize(190, 20);
         garageExpired.setLocation(250, 190);
@@ -558,7 +546,7 @@ public class CMAGui {
         poolLblExpired.setLocation(50, 220);
         cpExpiredListings.add(poolLblExpired);
 
-        JComboBox<String> poolExpired = new JComboBox<>(ynList.YNChoice);
+        poolExpired = new JComboBox<>(ynList.YNChoice);
         poolExpired.setFont(new Font("Arial", Font.PLAIN, 12));
         poolExpired.setSize(190, 20);
         poolExpired.setLocation(250, 220);
@@ -571,7 +559,7 @@ public class CMAGui {
         flatLblExpired.setLocation(50, 250);
         cpExpiredListings.add(flatLblExpired);
 
-        JComboBox<String> flatExpired = new JComboBox<>(ynList.YNChoice);
+        flatExpired = new JComboBox<>(ynList.YNChoice);
         flatExpired.setFont(new Font("Arial", Font.PLAIN, 12));
         flatExpired.setSize(190, 20);
         flatExpired.setLocation(250, 250);
@@ -584,7 +572,7 @@ public class CMAGui {
         domesticQuartLblExpired.setLocation(50, 280);
         cpExpiredListings.add(domesticQuartLblExpired);
 
-        JComboBox<String> domesticQuartExpired = new JComboBox<>(ynList.YNChoice);
+        domesticQuartExpired = new JComboBox<>(ynList.YNChoice);
         domesticQuartExpired.setFont(new Font("Arial", Font.PLAIN, 12));
         domesticQuartExpired.setSize(190, 20);
         domesticQuartExpired.setLocation(250, 280);
@@ -597,7 +585,7 @@ public class CMAGui {
         otherDetailLblExpired.setLocation(50, 310);
         cpExpiredListings.add(otherDetailLblExpired);
 
-        JTextArea otherDetailExpired = new JTextArea();
+        otherDetailExpired = new JTextArea();
         otherDetailExpired.setFont(new Font("Arial", Font.PLAIN, 12));
         otherDetailExpired.setSize(250,70);
         otherDetailExpired.setLocation(255, 310);
@@ -609,12 +597,12 @@ public class CMAGui {
         daysLblExpired.setLocation(50, 390);
         cpExpiredListings.add(daysLblExpired);
 
-        JComboBox<String> daysExpired = new JComboBox<>(numberList.numberChoice);
-        daysExpired.setFont(new Font("Arial", Font.PLAIN, 12));
-        daysExpired.setSize(190, 20);
-        daysExpired.setLocation(250, 390);
-        daysExpired.setSelectedItem(null);
-        cpExpiredListings.add(daysExpired);
+        daysOnMarketExpired = new JComboBox<>(numberList.numberChoice);
+        daysOnMarketExpired.setFont(new Font("Arial", Font.PLAIN, 12));
+        daysOnMarketExpired.setSize(190, 20);
+        daysOnMarketExpired.setLocation(250, 390);
+        daysOnMarketExpired.setSelectedItem(null);
+        cpExpiredListings.add(daysOnMarketExpired);
 
         JLabel listPriceLblExpired= new JLabel("List Price");
         listPriceLblExpired.setFont(new Font("Arial", Font.BOLD, 12));
@@ -628,7 +616,7 @@ public class CMAGui {
         currencyLblExpired1.setLocation(240, 420);
         cpExpiredListings.add(currencyLblExpired1);
 
-        JTextField listPriceExpired = new JTextField();
+        listPriceExpired = new JTextField();
         listPriceExpired.setFont(new Font("Arial", Font.PLAIN, 12));
         listPriceExpired.setSize(120, 20);
         listPriceExpired.setLocation(250, 420);
@@ -646,7 +634,7 @@ public class CMAGui {
         currencyLblExpired2.setLocation(240, 450);
         cpExpiredListings.add(currencyLblExpired2);
 
-        JTextField soldPriceExpired = new JTextField();
+        soldPriceExpired = new JTextField();
         soldPriceExpired.setFont(new Font("Arial", Font.PLAIN, 12));
         soldPriceExpired.setSize(120, 20);
         soldPriceExpired.setLocation(250, 450);
@@ -687,19 +675,7 @@ public class CMAGui {
         resetButtonSold.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addressSold.setText("");
-                erfSold.setText("");
-                livingRoomSold.setSelectedIndex(-1);
-                bedroomSold.setSelectedIndex(-1);
-                bathroomSold.setSelectedIndex(-1);
-                garageSold.setSelectedIndex(-1);
-                poolSold.setSelectedIndex(-1);
-                flatSold.setSelectedIndex(-1);
-                domesticQuartSold.setSelectedIndex(-1);
-                daysSold.setSelectedIndex(-1);
-                otherDetailSold.setText("");
-                listPriceSold.setText("");
-                soldPriceSold.setText("");
+                clearSoldDetails();
             }
         });
         cpHomesSold.add(resetButtonSold);
@@ -714,43 +690,30 @@ public class CMAGui {
 
                 // Get data from the form inputs
                 String address = addressSold.getText();
-                int erfSize = Integer.parseInt(erfSold.getText());
-                int livingRoom = Integer.parseInt(livingRoomSold.getSelectedItem().toString());
+                int erf_size = Integer.parseInt(erfSold.getText());
+                int living_room = Integer.parseInt(livingRoomSold.getSelectedItem().toString());
                 int bedroom = Integer.parseInt(bedroomSold.getSelectedItem().toString());
                 int bathroom = Integer.parseInt(bathroomSold.getSelectedItem().toString());
                 int garage = Integer.parseInt(garageSold.getSelectedItem().toString());
-                String pool = poolSold.getSelectedItem().toString();
-                String flat = flatSold.getSelectedItem().toString();
-                String domQuar = domesticQuartSold.getSelectedItem().toString();
-                String otherDetail = otherDetailSold.getText();
-                int daysOnMarket = Integer.parseInt(daysSold.getSelectedItem().toString());
-                double listPrice = Double.parseDouble(listPriceSold.getText());
-                double soldPrice = Double.parseDouble(soldPriceSold.getText());
+                boolean pool = poolSold.getSelectedItem().toString().equalsIgnoreCase("Yes");
+                boolean flat = flatSold.getSelectedItem().toString().equalsIgnoreCase("Yes");
+                boolean domestic_quar = domesticQuartSold.getSelectedItem().toString().equalsIgnoreCase("Yes");
+                String other_detail = otherDetailSold.getText();
+                int days_on_market = Integer.parseInt(daysOnMarketSold.getSelectedItem().toString());
+                double list_price = Double.parseDouble(listPriceSold.getText());
+                double sold_price = Double.parseDouble(soldPriceSold.getText());
 
                 CMAFunctionality.AddingProperties addHome = new CMAFunctionality.AddingProperties();
 
-                String addHomeSoldMessage = addHome.addHomesSold(address,erfSize,livingRoom,bedroom,bathroom,garage,pool,flat,domQuar,otherDetail,daysOnMarket,listPrice,soldPrice);
+                String addHomeSoldMessage = addHome.addHomesSold(address,erf_size,living_room,bedroom,bathroom,garage,pool,flat,domestic_quar,other_detail,days_on_market,list_price,sold_price);
 
                 JOptionPane.showMessageDialog(null, addHomeSoldMessage);
+                clearSoldDetails();
+
 
             }
         });
         cpHomesSold.add(addButtonSold);
-
-//        JButton uploadButtonSold = new JButton("Upload Image");
-//        uploadButtonSold.setFont(new Font("Arial", Font.BOLD, 12));
-//        uploadButtonSold.setSize(100, 20);
-//        uploadButtonSold.setLocation(310, 500);
-//        uploadButtonSold.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                CMAFunctionality.FileHandling imageReader = new CMAFunctionality.FileHandling();
-//                String imageUploadMessage = imageReader.ImageUploader();
-//
-//                JOptionPane.showMessageDialog(null, imageUploadMessage);
-//            }
-//        });
-//        cpHomesSold.add(uploadButtonSold);
 
         JButton nextButtonSold = new JButton("Next");
         nextButtonSold.setFont(new Font("Arial", Font.BOLD, 12));
@@ -776,19 +739,8 @@ public class CMAGui {
         resetButtonForSale.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addressForSale.setText("");
-                erfForSale.setText("");
-                livingRoomForSale.setSelectedIndex(-1);
-                bedroomForSale.setSelectedIndex(-1);
-                bathroomForSale.setSelectedIndex(-1);
-                garageForSale.setSelectedIndex(-1);
-                poolForSale.setSelectedIndex(-1);
-                flatForSale.setSelectedIndex(-1);
-                domesticQuartForSale.setSelectedIndex(-1);
-                daysOptionForSale.setSelectedIndex(-1);
-                otherDetailForSale.setText("");
-                listPriceForSale.setText("");
-                soldPriceForSale.setText("");
+                clearForSaleDetails();
+
             }
         });
         cpHomesForSale.add(resetButtonForSale);
@@ -801,17 +753,24 @@ public class CMAGui {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String address = addressForSale.getText();
-                int livingRooms = Integer.parseInt(livingRoomSold.getSelectedItem().toString());
-                int bedrooms = Integer.parseInt(bedroomSold.getSelectedItem().toString());
-                int bathrooms = Integer.parseInt(bathroomSold.getSelectedItem().toString());
-                int garages = Integer.parseInt(garageSold.getSelectedItem().toString());
-                String pool = poolSold.getSelectedItem().toString();
-                String flat = flatSold.getSelectedItem().toString();
-                String domesticQuarters = domesticQuartSold.getSelectedItem().toString();
-                String otherDetails = otherDetailSold.getText();
-                int daysOnMarket = Integer.parseInt(daysSold.getSelectedItem().toString());
-                double listPrice = Double.parseDouble(listPriceSold.getText());
-                double soldPrice = Double.parseDouble(soldPriceSold.getText());
+                int erf_size = Integer.parseInt(erfForSale.getText());
+                int living_room = Integer.parseInt(livingRoomForSale.getSelectedItem().toString());
+                int bedroom = Integer.parseInt(bedroomForSale.getSelectedItem().toString());
+                int bathroom = Integer.parseInt(bathroomForSale.getSelectedItem().toString());
+                int garage = Integer.parseInt(garageForSale.getSelectedItem().toString());
+                boolean pool = poolForSale.getSelectedItem().toString().equalsIgnoreCase("Yes");
+                boolean flat = flatForSale.getSelectedItem().toString().equalsIgnoreCase("Yes");
+                boolean domestic_quar = domesticQuartForSale.getSelectedItem().toString().equalsIgnoreCase("Yes");
+                String other_detail = otherDetailForSale.getText();
+                int days_on_market = Integer.parseInt(daysOnMarketForSale.getSelectedItem().toString());
+                double list_price = Double.parseDouble(listPriceForSale.getText());
+
+                CMAFunctionality.AddingProperties addHome = new CMAFunctionality.AddingProperties();
+
+                String addHomeForSaleMessage = addHome.addHomesForSale(address,erf_size,living_room,bedroom,bathroom,garage,pool,flat,domestic_quar,other_detail,days_on_market,list_price);
+
+                JOptionPane.showMessageDialog(null, addHomeForSaleMessage);
+                clearForSaleDetails();
 
 
             }
@@ -832,7 +791,7 @@ public class CMAGui {
         });
         cpHomesForSale.add(nextButtonForSale);
 
-        //Expired/Old Listings Frame buttons ------------------------------------------------------------------------
+        // Expired Listings Frame buttons ------------------------------------------------------------------------
         JButton resetButtonExpired = new JButton("Reset");
         resetButtonExpired.setFont(new Font("Arial", Font.BOLD, 12));
         resetButtonExpired.setSize(100, 20);
@@ -840,19 +799,8 @@ public class CMAGui {
         resetButtonExpired.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addressExpired.setText("");
-                erfExpired.setText("");
-                livingRoomExpired.setSelectedIndex(-1);
-                bedroomExpired.setSelectedIndex(-1);
-                bathroomExpired.setSelectedIndex(-1);
-                garageExpired.setSelectedIndex(-1);
-                poolExpired.setSelectedIndex(-1);
-                flatExpired.setSelectedIndex(-1);
-                domesticQuartExpired.setSelectedIndex(-1);
-                daysExpired.setSelectedIndex(-1);
-                otherDetailExpired.setText("");
-                listPriceExpired.setText("");
-                soldPriceExpired.setText("");
+                clearExpiredDetails();
+
             }
         });
         cpExpiredListings.add(resetButtonExpired);
@@ -867,41 +815,28 @@ public class CMAGui {
 
                 // Get data from the form inputs
                 String address = addressExpired.getText();
-                int livingRooms = Integer.parseInt(livingRoomExpired.getSelectedItem().toString());
-                int bedrooms = Integer.parseInt(bedroomExpired.getSelectedItem().toString());
-                int bathrooms = Integer.parseInt(bathroomExpired.getSelectedItem().toString());
-                int garages = Integer.parseInt(garageExpired.getSelectedItem().toString());
-                String pool = poolExpired.getSelectedItem().toString();
-                String flat = flatExpired.getSelectedItem().toString();
-                String domesticQuarters = domesticQuartExpired.getSelectedItem().toString();
-                String otherDetails = otherDetailExpired.getText();
-                int daysOnMarket = Integer.parseInt(daysExpired.getSelectedItem().toString());
-                double listPrice = Double.parseDouble(listPriceExpired.getText());
-                double soldPrice = Double.parseDouble(soldPriceExpired.getText());
+                int erf_size = Integer.parseInt(erfExpired.getText());
+                int living_room = Integer.parseInt(livingRoomExpired.getSelectedItem().toString());
+                int bedroom = Integer.parseInt(bedroomExpired.getSelectedItem().toString());
+                int bathroom = Integer.parseInt(bathroomExpired.getSelectedItem().toString());
+                int garage = Integer.parseInt(garageExpired.getSelectedItem().toString());
+                boolean pool = poolExpired.getSelectedItem().toString().equalsIgnoreCase("Yes");
+                boolean flat = flatExpired.getSelectedItem().toString().equalsIgnoreCase("Yes");
+                boolean domestic_quar = domesticQuartExpired.getSelectedItem().toString().equalsIgnoreCase("Yes");
+                String other_detail = otherDetailExpired.getText();
+                int days_on_market = Integer.parseInt(daysOnMarketExpired.getSelectedItem().toString());
+                double list_price = Double.parseDouble(listPriceExpired.getText());
+                double sold_price = Double.parseDouble(soldPriceExpired.getText());
 
-//                CMAFunctionality.AddingProperties addHome = new CMAFunctionality.AddingProperties();
-//
-//                String addHomeSoldMessage = addHome.addHomesSold(address,livingRooms,bedrooms,bathrooms,garages,pool,flat,domesticQuarters,otherDetails,daysOnMarket,listPrice,soldPrice);
-//
-//                JOptionPane.showMessageDialog(null, addHomeSoldMessage);
+                CMAFunctionality.AddingProperties addHome = new CMAFunctionality.AddingProperties();
+
+                String addHomeExpiredMessage = addHome.addHomesExpired(address,erf_size,living_room,bedroom,bathroom,garage,pool,flat,domestic_quar,other_detail,days_on_market,list_price,sold_price);
+
+                JOptionPane.showMessageDialog(null, addHomeExpiredMessage);
+                clearSoldDetails();
             }
         });
         cpExpiredListings.add(addButtonExpired);
-
-//        JButton uploadButtonExpired = new JButton("Upload Image");
-//        uploadButtonExpired.setFont(new Font("Arial", Font.BOLD, 12));
-//        uploadButtonExpired.setSize(100, 20);
-//        uploadButtonExpired.setLocation(310, 500);
-//        uploadButtonExpired.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                CMAFunctionality.FileHandling imageReader = new CMAFunctionality.FileHandling();
-//                String imageUploadMessage = imageReader.ImageUploader();
-//
-//                JOptionPane.showMessageDialog(null, imageUploadMessage);
-//            }
-//        });
-//        cpExpiredListings.add(uploadButtonExpired);
 
         JButton nextButtonExpired = new JButton("Next");
         nextButtonExpired.setFont(new Font("Arial", Font.BOLD, 12));
@@ -910,9 +845,7 @@ public class CMAGui {
         nextButtonExpired.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
-
+                expiredListingsFrame.setVisible(false);
 
             }
         });
@@ -920,9 +853,58 @@ public class CMAGui {
 
         //------------------------------------------------
 
-
-
         mainFrame.setVisible(true);
 
+    }
+
+    public void clearForSaleDetails() {
+
+        addressForSale.setText("");
+        erfForSale.setText("");
+        livingRoomForSale.setSelectedIndex(-1);
+        bedroomForSale.setSelectedIndex(-1);
+        bathroomForSale.setSelectedIndex(-1);
+        garageForSale.setSelectedIndex(-1);
+        poolForSale.setSelectedIndex(-1);
+        flatForSale.setSelectedIndex(-1);
+        domesticQuartForSale.setSelectedIndex(-1);
+        daysOnMarketForSale.setSelectedIndex(-1);
+        otherDetailForSale.setText("");
+        listPriceForSale.setText("");
+
+    }
+
+    public void clearSoldDetails() {
+
+        addressSold.setText("");
+        erfSold.setText("");
+        livingRoomSold.setSelectedIndex(-1);
+        bedroomSold.setSelectedIndex(-1);
+        bathroomSold.setSelectedIndex(-1);
+        garageSold.setSelectedIndex(-1);
+        poolSold.setSelectedIndex(-1);
+        flatSold.setSelectedIndex(-1);
+        domesticQuartSold.setSelectedIndex(-1);
+        daysOnMarketSold.setSelectedItem(-1);
+        otherDetailSold.setText("");
+        listPriceSold.setText("");
+        soldPriceSold.setText("");
+    }
+
+    public void clearExpiredDetails() {
+
+        addressExpired.setText("");
+        erfExpired.setText("");
+        livingRoomExpired.setSelectedIndex(-1);
+        bedroomExpired.setSelectedIndex(-1);
+        bathroomExpired.setSelectedIndex(-1);
+        garageExpired.setSelectedIndex(-1);
+        poolExpired.setSelectedIndex(-1);
+        flatExpired.setSelectedIndex(-1);
+        domesticQuartExpired.setSelectedIndex(-1);
+        daysOnMarketExpired.setSelectedItem(-1);
+        otherDetailExpired.setText("");
+        listPriceExpired.setText("");
+        soldPriceExpired.setText("");
     }
 }

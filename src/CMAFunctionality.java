@@ -1,8 +1,3 @@
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -21,76 +16,90 @@ public class CMAFunctionality {
 
     static class AddingProperties {
 
-        public String addHomesSold(String address, int erfSize, int livingRoom, int bedroom, int bathroom, int garage, String pool, String flat, String domQuar, String otherDetail , int daysOnMarket, double listPrice, double soldPrice) {
+        public String addHomesSold(String address, int erf_size, int living_room, int bedroom, int bathroom, int garage, boolean pool, boolean flat, boolean domestic_quar, String other_detail , int days_on_market, double list_price, double sold_price) {
             try (Connection connection = DatabaseConnector.connect()) {
-                String sql = "INSERT INTO home_sold (address, erfSize, livingRoom, bedroom, bathroom, garage, pool, flat, domQuar, otherDetail , daysOnMarket, listPrice, soldPrice) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                String sql = "INSERT INTO home_sold (address, erf_size, living_room, bedroom, bathroom, garage, pool, flat, domestic_quar, other_detail , days_on_market, list_price, sold_price) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 PreparedStatement ps = connection.prepareStatement(sql);
 
                 ps.setString(1, address);
-                ps.setInt(2, erfSize);
-                ps.setInt(3, livingRoom);
+                ps.setInt(2, erf_size);
+                ps.setInt(3, living_room);
                 ps.setInt(4, bedroom);
                 ps.setInt(5, bathroom);
                 ps.setInt(6, garage);
-                ps.setString(7, pool);
-                ps.setString(8, flat);
-                ps.setString(9, domQuar);
-                ps.setString(10, otherDetail);
-                ps.setInt(11, daysOnMarket);
-                ps.setDouble(12, listPrice);
-                ps.setDouble(13, soldPrice);
+                ps.setBoolean(7, pool);
+                ps.setBoolean(8, flat);
+                ps.setBoolean(9, domestic_quar);
+                ps.setString(10, other_detail);
+                ps.setInt(11, days_on_market);
+                ps.setDouble(12, list_price);
+                ps.setDouble(13, sold_price);
 
                 ps.executeUpdate();
 
             } catch (SQLException e) {
-                e.printStackTrace();
-                return "An error occurred during adding of the property";
+                return "An error occurred during adding of the property" + e.getMessage();
+            }
+            return "The property has been added. Add another property or click \"Next\" to go the the next screen";
+        }
+
+        public String addHomesForSale(String address, int erf_size, int living_room, int bedroom, int bathroom, int garage, boolean pool, boolean flat, boolean domestic_quar, String other_detail , int days_on_market, double list_price) {
+            try (Connection connection = DatabaseConnector.connect()) {
+                String sql = "INSERT INTO home_for_sale (address, erf_size, living_room, bedroom, bathroom, garage, pool, flat, domestic_quar, other_detail , days_on_market, list_price) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                PreparedStatement ps = connection.prepareStatement(sql);
+
+                ps.setString(1, address);
+                ps.setInt(2, erf_size);
+                ps.setInt(3, living_room);
+                ps.setInt(4, bedroom);
+                ps.setInt(5, bathroom);
+                ps.setInt(6, garage);
+                ps.setBoolean(7, pool);
+                ps.setBoolean(8, flat);
+                ps.setBoolean(9, domestic_quar);
+                ps.setString(10, other_detail);
+                ps.setInt(11, days_on_market);
+                ps.setDouble(12, list_price);
+
+                ps.executeUpdate();
+
+            } catch (SQLException e) {
+                return "An error occurred during adding of the property" + e.getMessage();
             }
 
-            return "The property has been added!";
+            return "The property has been added. Add another property or click \"Next\" to go the the next screen";
 
+        }
+
+        public String addHomesExpired(String address, int erf_size, int living_room, int bedroom, int bathroom, int garage, boolean pool, boolean flat, boolean domestic_quar, String other_detail , int days_on_market, double list_price, double sold_price) {
+            try (Connection connection = DatabaseConnector.connect()) {
+                String sql = "INSERT INTO home_expired (address, erf_size, living_room, bedroom, bathroom, garage, pool, flat, domestic_quar, other_detail , days_on_market, list_price, sold_price) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                PreparedStatement ps = connection.prepareStatement(sql);
+
+                ps.setString(1, address);
+                ps.setInt(2, erf_size);
+                ps.setInt(3, living_room);
+                ps.setInt(4, bedroom);
+                ps.setInt(5, bathroom);
+                ps.setInt(6, garage);
+                ps.setBoolean(7, pool);
+                ps.setBoolean(8, flat);
+                ps.setBoolean(9, domestic_quar);
+                ps.setString(10, other_detail);
+                ps.setInt(11, days_on_market);
+                ps.setDouble(12, list_price);
+                ps.setDouble(13, sold_price);
+
+                ps.executeUpdate();
+
+            } catch (SQLException e) {
+                return "An error occurred during adding of the property" + e.getMessage();
+            }
+            return "The property has been added. Add another property or click \"Next\" to go the the next screen";
         }
 
 
 
     }
 
-//    static class FileHandling {
-//
-//    public String ImageUploader() {
-//        // width of the image
-//        int width = 963;
-//
-//        // height of the image
-//        int height = 640;
-//
-//        // For storing image in RAM
-//        BufferedImage image = null;
-//
-//        FileDialog loadFileDialog = new FileDialog((Frame) null, "Open File", FileDialog.LOAD);
-//        loadFileDialog.setVisible(true);
-//
-//        String selectedReadFile = loadFileDialog.getFile();
-//
-//        // READ IMAGE
-//        try {
-//            File input_file = new File(loadFileDialog.getDirectory() + selectedReadFile);
-//
-//            // image file path create an object of BufferedImage type and pass as parameter the
-//            // width,  height and image int type. TYPE_INT_ARGB means that we are
-//            // representing the Alpha , Red, Green and Blue component of the image pixel using 8 bit
-//            // integer value.
-//
-//            image = new BufferedImage(
-//                    width, height, BufferedImage.TYPE_INT_ARGB);
-//
-//            // Reading input file
-//            image = ImageIO.read(input_file);
-//
-//            return "Image uploaded.";
-//        } catch (IOException e) {
-//            return "Image not Uploaded. Error: " + e;
-//        }
-//    }
-//    }
 }
