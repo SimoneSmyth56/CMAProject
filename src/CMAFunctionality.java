@@ -21,23 +21,24 @@ public class CMAFunctionality {
 
     static class AddingProperties {
 
-        public String addHomesSold(String address,int livingRooms, int bedrooms, int bathrooms, int garages, String pool, String flat, String domesticQuarters, String otherDetails , int daysOnMarket, double listPrice, double soldPrice) {
+        public String addHomesSold(String address, int erfSize, int livingRoom, int bedroom, int bathroom, int garage, String pool, String flat, String domQuar, String otherDetail , int daysOnMarket, double listPrice, double soldPrice) {
             try (Connection connection = DatabaseConnector.connect()) {
-                String sql = "INSERT INTO HomesSold (address, livingRooms, bedrooms, bathrooms, garages, pool, flat, domesticQuarters, otherDetails , daysOnMarket, listPrice, soldPrice) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                String sql = "INSERT INTO home_sold (address, erfSize, livingRoom, bedroom, bathroom, garage, pool, flat, domQuar, otherDetail , daysOnMarket, listPrice, soldPrice) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 PreparedStatement ps = connection.prepareStatement(sql);
 
                 ps.setString(1, address);
-                ps.setInt(2, livingRooms);
-                ps.setInt(3, bedrooms);
-                ps.setInt(4, bathrooms);
-                ps.setInt(5, garages);
-                ps.setString(6, pool);
-                ps.setString(7, flat);
-                ps.setString(8, domesticQuarters);
-                ps.setString(9, otherDetails);
-                ps.setInt(10, daysOnMarket);
-                ps.setDouble(11, listPrice);
-                ps.setDouble(12, soldPrice);
+                ps.setInt(2, erfSize);
+                ps.setInt(3, livingRoom);
+                ps.setInt(4, bedroom);
+                ps.setInt(5, bathroom);
+                ps.setInt(6, garage);
+                ps.setString(7, pool);
+                ps.setString(8, flat);
+                ps.setString(9, domQuar);
+                ps.setString(10, otherDetail);
+                ps.setInt(11, daysOnMarket);
+                ps.setDouble(12, listPrice);
+                ps.setDouble(13, soldPrice);
 
                 ps.executeUpdate();
 
@@ -46,7 +47,7 @@ public class CMAFunctionality {
                 return "An error occurred during adding of the property";
             }
 
-            return "Your property has been added!";
+            return "The property has been added!";
 
         }
 

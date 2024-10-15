@@ -714,21 +714,22 @@ public class CMAGui {
 
                 // Get data from the form inputs
                 String address = addressSold.getText();
-                int livingRooms = Integer.parseInt(livingRoomSold.getSelectedItem().toString());
-                int bedrooms = Integer.parseInt(bedroomSold.getSelectedItem().toString());
-                int bathrooms = Integer.parseInt(bathroomSold.getSelectedItem().toString());
-                int garages = Integer.parseInt(garageSold.getSelectedItem().toString());
+                int erfSize = Integer.parseInt(erfSold.getText());
+                int livingRoom = Integer.parseInt(livingRoomSold.getSelectedItem().toString());
+                int bedroom = Integer.parseInt(bedroomSold.getSelectedItem().toString());
+                int bathroom = Integer.parseInt(bathroomSold.getSelectedItem().toString());
+                int garage = Integer.parseInt(garageSold.getSelectedItem().toString());
                 String pool = poolSold.getSelectedItem().toString();
                 String flat = flatSold.getSelectedItem().toString();
-                String domesticQuarters = domesticQuartSold.getSelectedItem().toString();
-                String otherDetails = otherDetailSold.getText();
+                String domQuar = domesticQuartSold.getSelectedItem().toString();
+                String otherDetail = otherDetailSold.getText();
                 int daysOnMarket = Integer.parseInt(daysSold.getSelectedItem().toString());
                 double listPrice = Double.parseDouble(listPriceSold.getText());
                 double soldPrice = Double.parseDouble(soldPriceSold.getText());
 
                 CMAFunctionality.AddingProperties addHome = new CMAFunctionality.AddingProperties();
 
-                String addHomeSoldMessage = addHome.addHomesSold(address,livingRooms,bedrooms,bathrooms,garages,pool,flat,domesticQuarters,otherDetails,daysOnMarket,listPrice,soldPrice);
+                String addHomeSoldMessage = addHome.addHomesSold(address,erfSize,livingRoom,bedroom,bathroom,garage,pool,flat,domQuar,otherDetail,daysOnMarket,listPrice,soldPrice);
 
                 JOptionPane.showMessageDialog(null, addHomeSoldMessage);
 
