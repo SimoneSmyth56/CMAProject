@@ -29,5 +29,15 @@
         <jarDirectory url="file://$USER_HOME$/Downloads/mysql-connector-j-9.0.0 2" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Downloads/poi-bin-5.2.3" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$USER_HOME$/Downloads/poi-bin-5.2.3" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>
