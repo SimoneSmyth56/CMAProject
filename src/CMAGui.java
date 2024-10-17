@@ -18,6 +18,8 @@ public class CMAGui {
     CMAFunctionality.YNList ynList = new CMAFunctionality.YNList();
     DatabaseFunctions databaseFunctions = new DatabaseFunctions();
 
+    int propertiesAdded = 0;
+
     Color karisColour1 = new Color(40,128,129);
 
     public CMAGui() {
@@ -864,6 +866,11 @@ public class CMAGui {
         addButtonSold.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                propertiesAdded = propertiesAdded + 1;
+
+                if (propertiesAdded <= 4) {
+
+                CMAFunctionality.AddingProperties addHome = new CMAFunctionality.AddingProperties();
 
                 // Get data from the form inputs
                 String address = addressSold.getText();
@@ -880,12 +887,20 @@ public class CMAGui {
                 double list_price = Double.parseDouble(listPriceSold.getText());
                 double sold_price = Double.parseDouble(soldPriceSold.getText());
 
-                CMAFunctionality.AddingProperties addHome = new CMAFunctionality.AddingProperties();
+
 
                 String addHomeSoldMessage = addHome.addHomesSold(address,erf_size,living_room,bedroom,bathroom,garage,pool,flat,domestic_quar,other_detail,days_on_market,list_price,sold_price);
 
                 JOptionPane.showMessageDialog(null, addHomeSoldMessage);
                 clearSoldDetails();
+                }
+
+                if (propertiesAdded == 4) {
+                    addButtonSold.setEnabled(false);
+                    addButtonSold.setToolTipText("Maximum 4 properties have been added");
+
+                }
+
             }
         });
         cpHomesSold.add(addButtonSold);
@@ -893,7 +908,7 @@ public class CMAGui {
         JButton nextButtonSold = new JButton("Next");
         nextButtonSold.setFont(new Font("Arial", Font.BOLD, 12));
         nextButtonSold.setSize(100, 20);
-        nextButtonSold.setLocation(440, 500);
+        nextButtonSold.setLocation(310, 500);
         nextButtonSold.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -927,27 +942,37 @@ public class CMAGui {
         addButtonForSale.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String address = addressForSale.getText();
-                int erf_size = Integer.parseInt(erfForSale.getText());
-                int living_room = Integer.parseInt(livingRoomForSale.getSelectedItem().toString());
-                int bedroom = Integer.parseInt(bedroomForSale.getSelectedItem().toString());
-                int bathroom = Integer.parseInt(bathroomForSale.getSelectedItem().toString());
-                int garage = Integer.parseInt(garageForSale.getSelectedItem().toString());
-                boolean pool = poolForSale.getSelectedItem().toString().equalsIgnoreCase("Yes");
-                boolean flat = flatForSale.getSelectedItem().toString().equalsIgnoreCase("Yes");
-                boolean domestic_quar = domesticQuartForSale.getSelectedItem().toString().equalsIgnoreCase("Yes");
-                String other_detail = otherDetailForSale.getText();
-                int days_on_market = Integer.parseInt(daysOnMarketForSale.getSelectedItem().toString());
-                double list_price = Double.parseDouble(listPriceForSale.getText());
+                propertiesAdded = propertiesAdded + 1;
 
-                CMAFunctionality.AddingProperties addHome = new CMAFunctionality.AddingProperties();
+                if (propertiesAdded <= 4) {
 
-                String addHomeForSaleMessage = addHome.addHomesForSale(address,erf_size,living_room,bedroom,bathroom,garage,pool,flat,domestic_quar,other_detail,days_on_market,list_price);
+                    CMAFunctionality.AddingProperties addHome = new CMAFunctionality.AddingProperties();
 
-                JOptionPane.showMessageDialog(null, addHomeForSaleMessage);
-                clearForSaleDetails();
+                    String address = addressForSale.getText();
+                    int erf_size = Integer.parseInt(erfForSale.getText());
+                    int living_room = Integer.parseInt(livingRoomForSale.getSelectedItem().toString());
+                    int bedroom = Integer.parseInt(bedroomForSale.getSelectedItem().toString());
+                    int bathroom = Integer.parseInt(bathroomForSale.getSelectedItem().toString());
+                    int garage = Integer.parseInt(garageForSale.getSelectedItem().toString());
+                    boolean pool = poolForSale.getSelectedItem().toString().equalsIgnoreCase("Yes");
+                    boolean flat = flatForSale.getSelectedItem().toString().equalsIgnoreCase("Yes");
+                    boolean domestic_quar = domesticQuartForSale.getSelectedItem().toString().equalsIgnoreCase("Yes");
+                    String other_detail = otherDetailForSale.getText();
+                    int days_on_market = Integer.parseInt(daysOnMarketForSale.getSelectedItem().toString());
+                    double list_price = Double.parseDouble(listPriceForSale.getText());
 
 
+                    String addHomeForSaleMessage = addHome.addHomesForSale(address,erf_size,living_room,bedroom,bathroom,garage,pool,flat,domestic_quar,other_detail,days_on_market,list_price);
+
+                    JOptionPane.showMessageDialog(null, addHomeForSaleMessage);
+                    clearForSaleDetails();
+                }
+
+                if (propertiesAdded == 4) {
+                    addButtonForSale.setEnabled(false);
+                    addButtonForSale.setToolTipText("Maximum 4 properties have been added");
+
+                }
             }
         });
         cpHomesForSale.add(addButtonForSale);
@@ -959,6 +984,7 @@ public class CMAGui {
         nextButtonForSale.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 homesForSaleFrame.setVisible(false);
                 expiredListingsFrame.setVisible(true);
 
@@ -974,8 +1000,8 @@ public class CMAGui {
         resetButtonExpired.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clearExpiredDetails();
 
+                clearExpiredDetails();
             }
         });
         cpExpiredListings.add(resetButtonExpired);
@@ -987,28 +1013,39 @@ public class CMAGui {
         addButtonExpired.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                propertiesAdded = propertiesAdded + 1;
 
-                // Get data from the form inputs
-                String address = addressExpired.getText();
-                int erf_size = Integer.parseInt(erfExpired.getText());
-                int living_room = Integer.parseInt(livingRoomExpired.getSelectedItem().toString());
-                int bedroom = Integer.parseInt(bedroomExpired.getSelectedItem().toString());
-                int bathroom = Integer.parseInt(bathroomExpired.getSelectedItem().toString());
-                int garage = Integer.parseInt(garageExpired.getSelectedItem().toString());
-                boolean pool = poolExpired.getSelectedItem().toString().equalsIgnoreCase("Yes");
-                boolean flat = flatExpired.getSelectedItem().toString().equalsIgnoreCase("Yes");
-                boolean domestic_quar = domesticQuartExpired.getSelectedItem().toString().equalsIgnoreCase("Yes");
-                String other_detail = otherDetailExpired.getText();
-                int days_on_market = Integer.parseInt(daysOnMarketExpired.getSelectedItem().toString());
-                double list_price = Double.parseDouble(listPriceExpired.getText());
+                if (propertiesAdded <= 4) {
+
+                    CMAFunctionality.AddingProperties addHome = new CMAFunctionality.AddingProperties();
+
+                    // Get data from the form inputs
+                    String address = addressExpired.getText();
+                    int erf_size = Integer.parseInt(erfExpired.getText());
+                    int living_room = Integer.parseInt(livingRoomExpired.getSelectedItem().toString());
+                    int bedroom = Integer.parseInt(bedroomExpired.getSelectedItem().toString());
+                    int bathroom = Integer.parseInt(bathroomExpired.getSelectedItem().toString());
+                    int garage = Integer.parseInt(garageExpired.getSelectedItem().toString());
+                    boolean pool = poolExpired.getSelectedItem().toString().equalsIgnoreCase("Yes");
+                    boolean flat = flatExpired.getSelectedItem().toString().equalsIgnoreCase("Yes");
+                    boolean domestic_quar = domesticQuartExpired.getSelectedItem().toString().equalsIgnoreCase("Yes");
+                    String other_detail = otherDetailExpired.getText();
+                    int days_on_market = Integer.parseInt(daysOnMarketExpired.getSelectedItem().toString());
+                    double list_price = Double.parseDouble(listPriceExpired.getText());
 
 
-                CMAFunctionality.AddingProperties addHome = new CMAFunctionality.AddingProperties();
+                    String addHomeExpiredMessage = addHome.addHomesExpired(address,erf_size,living_room,bedroom,bathroom,garage,pool,flat,domestic_quar,other_detail,days_on_market,list_price);
 
-                String addHomeExpiredMessage = addHome.addHomesExpired(address,erf_size,living_room,bedroom,bathroom,garage,pool,flat,domestic_quar,other_detail,days_on_market,list_price);
+                    JOptionPane.showMessageDialog(null, addHomeExpiredMessage);
+                    clearExpiredDetails();
+                }
 
-                JOptionPane.showMessageDialog(null, addHomeExpiredMessage);
-                clearExpiredDetails();
+                if (propertiesAdded == 4) {
+                    addButtonExpired.setEnabled(false);
+                    addButtonExpired.setToolTipText("Maximum 4 properties have been added");
+
+                }
+
             }
         });
         cpExpiredListings.add(addButtonExpired);
@@ -1016,10 +1053,11 @@ public class CMAGui {
         JButton nextButtonExpired = new JButton("Next");
         nextButtonExpired.setFont(new Font("Arial", Font.BOLD, 12));
         nextButtonExpired.setSize(100, 20);
-        nextButtonExpired.setLocation(440, 500);
+        nextButtonExpired.setLocation(310, 500);
         nextButtonExpired.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 expiredListingsFrame.setVisible(false);
                 yourPropertyFrame.setVisible(true);
 
@@ -1050,6 +1088,7 @@ public class CMAGui {
         addButtonYourProp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                CMAFunctionality.AddingProperties addHome = new CMAFunctionality.AddingProperties();
 
                 // Get data from the form inputs
                 String address = addressYourProp.getText();
@@ -1065,14 +1104,11 @@ public class CMAGui {
                 int days_on_market = Integer.parseInt(daysOnMarketYourProp.getSelectedItem().toString());
                 double list_price = Double.parseDouble(listPriceYourProp.getText());
 
-
-                CMAFunctionality.AddingProperties addHome = new CMAFunctionality.AddingProperties();
-
                 String addButtonYourPropMessage = addHome.addYourProp(address,erf_size,living_room,bedroom,bathroom,garage,pool,flat,domestic_quar,other_detail,days_on_market,list_price);
 
                 JOptionPane.showMessageDialog(null, addButtonYourPropMessage);
                 addButtonYourProp.setEnabled(false);
-                estimatedValueFrame.setVisible(true);
+                addButtonYourProp.setToolTipText("Only one property can be added");
 
             }
         });
@@ -1085,13 +1121,35 @@ public class CMAGui {
         nextButtonYourProp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                yourPropertyFrame.setVisible(false);
+                estimatedValueFrame.setVisible(true);
 
             }
         });
         cpYourProperty.add(nextButtonYourProp);
 
         //-----------------------------------------
+
+        // Estimated Value Frame buttons ------------------------------------------------------------------------
+        JButton generateReportButton = new JButton("Generate Report");
+        generateReportButton.setFont(new Font("Arial", Font.BOLD, 12));
+        generateReportButton.setSize(120, 30);
+        generateReportButton.setLocation(50, 500);
+        generateReportButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                WordReportGenerator reportGenerator = new WordReportGenerator();
+                reportGenerator.wordReportGenerator();
+
+                String reportGeneratedMessage = reportGenerator.wordReportGenerator();
+
+                JOptionPane.showMessageDialog(null, reportGeneratedMessage);
+
+            }
+        });
+        cpEstimatedValue.add(generateReportButton);
+
+        //-----------------------------------------------------
 
         mainFrame.setVisible(true);
 
