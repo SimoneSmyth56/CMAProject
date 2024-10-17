@@ -13,6 +13,7 @@ public class DatabaseFunctions {
     public int maxEstimateValue () {
         int max = Integer.MAX_VALUE;
         return max;
+
     }
 
     public String avgEstimateValue () {
