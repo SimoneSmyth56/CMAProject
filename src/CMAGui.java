@@ -34,40 +34,37 @@ public class CMAGui {
         // The main panel
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.setPreferredSize(new Dimension(800, 600));
+        mainPanel.setPreferredSize(new Dimension(500, 300));
 
         JPanel topLabelPanel = new JPanel();
-        topLabelPanel.setPreferredSize(new Dimension(800, 50));
+        topLabelPanel.setPreferredSize(new Dimension(500, 50));
         topLabelPanel.setBackground(karisColour1);
 
         JPanel leftMenuPanel = new JPanel();
-        leftMenuPanel.setPreferredSize(new Dimension(220, 500));
+        leftMenuPanel.setPreferredSize(new Dimension(490, 220));
         leftMenuPanel.setBorder(blackline);
 
         JPanel innerMenuPanel = new JPanel();
         innerMenuPanel.setLayout(new BoxLayout(innerMenuPanel, BoxLayout.Y_AXIS));
-        innerMenuPanel.setPreferredSize(new Dimension(200, 480));
+        innerMenuPanel.setPreferredSize(new Dimension(450, 200));
         innerMenuPanel.setBackground(karisColour1);
         innerMenuPanel.setBorder(blackline);
         leftMenuPanel.add(innerMenuPanel);
 
-        JPanel centerPanel = new JPanel();
-        centerPanel.setPreferredSize(new Dimension(520, 500));
-        centerPanel.setBorder(blackline);
+//        JPanel centerPanel = new JPanel();
+//        centerPanel.setPreferredSize(new Dimension(520, 500));
+//        centerPanel.setBorder(blackline);
 
-        JPanel bottomPanel = new JPanel();
-        bottomPanel.setPreferredSize(new Dimension(800, 50));
-        bottomPanel.setBackground(karisColour1);
+//        JPanel bottomPanel = new JPanel();
+//        bottomPanel.setPreferredSize(new Dimension(500, 50));
+//        bottomPanel.setBackground(karisColour1);
 
-
-        // Container panel to hold the task table and file handling side by side
         JPanel containerPanel = new JPanel();
         containerPanel.add(topLabelPanel, BorderLayout.NORTH);
         containerPanel.add(leftMenuPanel, BorderLayout.WEST);
-        containerPanel.add(centerPanel, BorderLayout.EAST);
-        containerPanel.add(bottomPanel, BorderLayout.SOUTH);
+//        containerPanel.add(centerPanel, BorderLayout.EAST);
+//        containerPanel.add(bottomPanel, BorderLayout.SOUTH);
         mainPanel.add(containerPanel);
-
 
         mainFrame.getContentPane().add(mainPanel);
         mainFrame.pack();
@@ -92,12 +89,12 @@ public class CMAGui {
         innerMenuPanel.add(logoLabel);
 
 
-        JLabel welcomeMessage = new JLabel("Welcome");
-        welcomeMessage.setFont(new Font("Arial", Font.BOLD, 16));
-        welcomeMessage.setForeground(Color.WHITE);
-        welcomeMessage.setAlignmentX(Component.CENTER_ALIGNMENT);
-        welcomeMessage.setMaximumSize(new Dimension(200, 80));
-        innerMenuPanel.add(welcomeMessage);
+//        JLabel welcomeMessage = new JLabel("Welcome");
+//        welcomeMessage.setFont(new Font("Arial", Font.BOLD, 16));
+//        welcomeMessage.setForeground(Color.WHITE);
+//        welcomeMessage.setAlignmentY(Component.CENTER_ALIGNMENT);
+//        welcomeMessage.setMaximumSize(new Dimension(200, 80));
+//        innerMenuPanel.add(welcomeMessage);
 
         //Similar homes sold frame-----------------------------------------------------
         JFrame homesSoldFrame = new JFrame();
@@ -822,11 +819,11 @@ public class CMAGui {
 
         //Main Frame Buttons---------------------------------------------
 
-        JButton homeButton = new JButton("Home");
-        homeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        homeButton.setFont(new Font("Arial", Font.BOLD, 16));
-        homeButton.setMaximumSize(new Dimension(200, 90));
-        innerMenuPanel.add(homeButton);
+//        JButton homeButton = new JButton("Home");
+//        homeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+//        homeButton.setFont(new Font("Arial", Font.BOLD, 16));
+//        homeButton.setMaximumSize(new Dimension(200, 90));
+//        innerMenuPanel.add(homeButton);
 
         JButton addNewProperty = new JButton("Add new property");
         addNewProperty.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -840,10 +837,10 @@ public class CMAGui {
 
         });
 
-        JButton previousReports = new JButton("Previous reports");
-        previousReports.setAlignmentX(Component.CENTER_ALIGNMENT);
-        previousReports.setMaximumSize(new Dimension(200, 90));
-        innerMenuPanel.add(previousReports);
+//        JButton previousReports = new JButton("Previous reports");
+//        previousReports.setAlignmentX(Component.CENTER_ALIGNMENT);
+//        previousReports.setMaximumSize(new Dimension(200, 90));
+//        innerMenuPanel.add(previousReports);
 
 
         //Homes Sold Frame buttons ------------------------------------------------------------------------
@@ -886,8 +883,6 @@ public class CMAGui {
                 int days_on_market = Integer.parseInt(daysOnMarketSold.getSelectedItem().toString());
                 double list_price = Double.parseDouble(listPriceSold.getText());
                 double sold_price = Double.parseDouble(soldPriceSold.getText());
-
-
 
                 String addHomeSoldMessage = addHome.addHomesSold(address,erf_size,living_room,bedroom,bathroom,garage,pool,flat,domestic_quar,other_detail,days_on_market,list_price,sold_price);
 
@@ -1075,8 +1070,7 @@ public class CMAGui {
         resetButtonYourProp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
+                clearYourPropertyDetails();
             }
         });
         cpYourProperty.add(resetButtonYourProp);
@@ -1117,13 +1111,12 @@ public class CMAGui {
         JButton nextButtonYourProp = new JButton("Next");
         nextButtonYourProp.setFont(new Font("Arial", Font.BOLD, 12));
         nextButtonYourProp.setSize(100, 20);
-        nextButtonYourProp.setLocation(440, 500);
+        nextButtonYourProp.setLocation(310, 500);
         nextButtonYourProp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 yourPropertyFrame.setVisible(false);
                 estimatedValueFrame.setVisible(true);
-
             }
         });
         cpYourProperty.add(nextButtonYourProp);
@@ -1144,6 +1137,7 @@ public class CMAGui {
                 String reportGeneratedMessage = reportGenerator.wordReportGenerator();
 
                 JOptionPane.showMessageDialog(null, reportGeneratedMessage);
+                estimatedValueFrame.setVisible(false);
 
             }
         });
@@ -1203,5 +1197,21 @@ public class CMAGui {
         daysOnMarketExpired.setSelectedItem(-1);
         otherDetailExpired.setText("");
         listPriceExpired.setText("");
+    }
+
+    public void clearYourPropertyDetails() {
+
+        addressYourProp.setText("");
+        erfYourProp.setText("");
+        livingRoomYourProp.setSelectedIndex(-1);
+        bedroomYourProp.setSelectedIndex(-1);
+        bathroomYourProp.setSelectedIndex(-1);
+        garageYourProp.setSelectedIndex(-1);
+        poolYourProp.setSelectedIndex(-1);
+        flatYourProp.setSelectedIndex(-1);
+        domesticQuartYourProp.setSelectedIndex(-1);
+        daysOnMarketYourProp.setSelectedItem(-1);
+        otherDetailYourProp.setText("");
+        listPriceYourProp.setText("");
     }
 }
