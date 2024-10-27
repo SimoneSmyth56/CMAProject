@@ -4,7 +4,6 @@ import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTPageMar;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSectPr;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STPageOrientation;
-
 import java.io.*;
 import java.math.BigInteger;
 import java.sql.SQLException;
@@ -13,8 +12,13 @@ import java.util.List;
 
 public class WordReportGenerator {
 
+    private String recommendedPrice;
+
+    public void setRecommendedPrice(String recommendedPrice) {
+        this.recommendedPrice = recommendedPrice;
+    }
+
     CMAGui gui = new CMAGui();
-    CMAFunctionality cmaFunctionality = new CMAFunctionality();
     DatabaseFunctions databaseFunctions = new DatabaseFunctions();
 
 
@@ -97,7 +101,8 @@ public class WordReportGenerator {
                     Units.toEMU(CMADiagramwidth),
                     Units.toEMU(CMADiagramheight));
 
-            coverParagraph.setPageBreak(true);
+            runPage1.addBreak();
+            runPage1.addBreak();
 
             // TABLE COMPARISON PAGE _____________________________________
 
@@ -105,15 +110,14 @@ public class WordReportGenerator {
 
             page2Paragraph.setAlignment(ParagraphAlignment.CENTER);
 
-
             XWPFRun titleRun = page2Paragraph.createRun();
             titleRun.setText("Comparable Listings");
             titleRun.setBold(true);
             titleRun.setFontSize(20);
             titleRun.setColor("288081"); // Set font color to R40G128B129 in hexadecimal (288081). RGB: #288081 is equivalent to R40G128B129 );
-            titleRun.addBreak();
 
             try {
+
                 XWPFParagraph forSaleHeading = document.createParagraph();
                 forSaleHeading.setAlignment(ParagraphAlignment.CENTER);
 
@@ -134,15 +138,106 @@ public class WordReportGenerator {
                 List<DatabaseFunctions.Property> propertiesForSale = DatabaseFunctions.fetchPropertiesForSale();
                 createTable(document, propertiesForSale);
 
-//                List<DatabaseFunctions.Property> propertiesSold = DatabaseFunctions.fetchPropertiesSold();
-//                createTable(document, propertiesSold, "Similar homes recently Sold");
-//
-//                List<DatabaseFunctions.Property> propertiesExpired = DatabaseFunctions.fetchPropertiesExpired();
-//                createTable(document, propertiesExpired, "Expired / Old Listings");
+                addSpacing(document);
+
+                XWPFParagraph soldHeading = document.createParagraph();
+                soldHeading.setAlignment(ParagraphAlignment.CENTER);
+
+                XWPFRun soldHeadingRun = soldHeading.createRun();
+                soldHeadingRun.setText("Similar Homes Recently Sold");
+                soldHeadingRun.setBold(true);
+                soldHeadingRun.setFontSize(14);
+                soldHeadingRun.setColor("288081");
+                soldHeadingRun.addBreak();
+
+                XWPFRun soldSubHeadingRun = soldHeading.createRun();
+                soldSubHeadingRun.setText("This tells us what people are willing to pay for a similar house in this area, at this time");
+                soldSubHeadingRun.setBold(true);
+                soldSubHeadingRun.setFontSize(10);
+                soldSubHeadingRun.setColor("808080");
+                soldSubHeadingRun.addBreak();
+
+                List<DatabaseFunctions.PropertySold> propertiesSold = DatabaseFunctions.fetchPropertiesSold();
+                createSoldTable(document, propertiesSold);
+
+                addSpacing(document);
+
+                XWPFParagraph expiredHeading = document.createParagraph();
+                expiredHeading.setAlignment(ParagraphAlignment.CENTER);
+
+                XWPFRun expiredHeadingRun = expiredHeading.createRun();
+                expiredHeadingRun.setText("Expired Listings");
+                expiredHeadingRun.setBold(true);
+                expiredHeadingRun.setFontSize(14);
+                expiredHeadingRun.setColor("288081");
+                expiredHeadingRun.addBreak();
+
+                XWPFRun expiredSubHeadingRun = expiredHeading.createRun();
+                expiredSubHeadingRun.setText("Similar homes that were not sold in 90 days or more. This illustrates the problem with over-pricing");
+                expiredSubHeadingRun.setBold(true);
+                expiredSubHeadingRun.setFontSize(10);
+                expiredSubHeadingRun.setColor("808080");
+                expiredSubHeadingRun.addBreak();
+
+                List<DatabaseFunctions.Property> propertiesExpired = DatabaseFunctions.fetchPropertiesExpired();
+                createTable(document, propertiesExpired);
+
+                addSpacing(document);
+
+                XWPFParagraph yourPropHeading = document.createParagraph();
+                yourPropHeading.setAlignment(ParagraphAlignment.CENTER);
+
+                XWPFRun yourPropHeadingRun = yourPropHeading.createRun();
+                yourPropHeadingRun.setText("Your Property");
+                yourPropHeadingRun.setBold(true);
+                yourPropHeadingRun.setFontSize(14);
+                yourPropHeadingRun.setColor("288081");
+                yourPropHeadingRun.addBreak();
+
+                XWPFRun yourPropSubHeadingRun = yourPropHeading.createRun();
+                yourPropSubHeadingRun.setText("Your property details");
+                yourPropSubHeadingRun.setBold(true);
+                yourPropSubHeadingRun.setFontSize(10);
+                yourPropSubHeadingRun.setColor("808080");
+                yourPropSubHeadingRun.addBreak();
+
+                List<DatabaseFunctions.Property> propertiesYourProp = DatabaseFunctions.fetchPropertiesYourProp();
+                createTable(document, propertiesYourProp);
+
 
                 document.createParagraph().createRun().addBreak();
 
-                averagePriceSection(document);
+                XWPFParagraph avgPriceParagraph = document.createParagraph();
+                XWPFRun avgPriceRun = avgPriceParagraph.createRun();
+                avgPriceRun.setText("Average List Price: R" + databaseFunctions.avgEstimateValue());
+                avgPriceRun.setFontSize(16);
+                avgPriceRun.setColor("288081");
+                avgPriceRun.setBold(true);
+
+
+                XWPFParagraph maxPriceParagraph = document.createParagraph();
+                XWPFRun maxPriceRun = maxPriceParagraph.createRun();
+                maxPriceRun.setText("Maximum List Price: R" + databaseFunctions.maxEstimateValue());
+                maxPriceRun.setFontSize(16);
+                maxPriceRun.setColor("288081");
+                maxPriceRun.setBold(true);
+
+
+                XWPFParagraph minPriceParagraph = document.createParagraph();
+                XWPFRun minPriceRun = minPriceParagraph.createRun();
+                minPriceRun.setText("Maximum List Price: R" + databaseFunctions.minEstimateValue());
+                minPriceRun.setFontSize(16);
+                minPriceRun.setColor("288081");
+                minPriceRun.setBold(true);
+
+
+                XWPFParagraph recommendedPriceP = document.createParagraph();
+                XWPFRun recommendedPriceRun = recommendedPriceP.createRun();
+                recommendedPriceRun.setText("Recommended List Price: R" + recommendedPrice);
+                recommendedPriceRun.setFontSize(16);
+                recommendedPriceRun.setColor("288081");
+                recommendedPriceRun.setBold(true);
+
 
                 XWPFParagraph infoHeadingParagraph = document.createParagraph();
                 XWPFRun infoHeadingRun = infoHeadingParagraph.createRun();
@@ -164,7 +259,6 @@ public class WordReportGenerator {
                 infoRun.setText("- Securing financing for the sale is more difficult.");
                 infoRun.addCarriageReturn();
                 infoRun.setText("- Ultimately, the property may not sell.");
-                infoRun.addCarriageReturn();
                 infoRun.addCarriageReturn();
 
                 XWPFParagraph infoHeading2Paragraph = document.createParagraph();
@@ -191,11 +285,7 @@ public class WordReportGenerator {
                 infoRun.setFontSize(12);
                 info2Run.setFontSize(12);
 
-
-
                 document.write(out);
-
-
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -206,14 +296,14 @@ public class WordReportGenerator {
         return "Report has been generated";
     }
 
-    private void averagePriceSection(XWPFDocument document) {
+    //-------------------------------------------------------------
+    //                      Methods
+    //-------------------------------------------------------------
 
-        XWPFParagraph avgPricePara = document.createParagraph();
-        XWPFRun avgPriceRun = avgPricePara.createRun();
-        avgPriceRun.setText("Average List Price: R" + databaseFunctions.avgEstimateValue());
-        avgPriceRun.setFontSize(16);
-        avgPriceRun.setBold(true);
-
+    private void addSpacing(XWPFDocument document) {
+        XWPFParagraph spacingParagraph = document.createParagraph();
+        XWPFRun spacingRun = spacingParagraph.createRun();
+        spacingRun.addBreak();
     }
 
     private void createTable(XWPFDocument document, List<DatabaseFunctions.Property> properties) {
@@ -234,7 +324,7 @@ public class WordReportGenerator {
     private void insertTableHeader(XWPFTable table) {
         XWPFTableRow headerRow = table.getRow(0);
         headerRow.getCell(0).setText("Address");
-        headerRow.getCell(1).setText("ERF Size");
+        headerRow.getCell(1).setText("Erf Size");
         headerRow.getCell(2).setText("Living Room");
         headerRow.getCell(3).setText("Bedrooms");
         headerRow.getCell(4).setText("Bathrooms");
@@ -261,6 +351,55 @@ public class WordReportGenerator {
         row.getCell(9).setText(property.other_detail);
         row.getCell(10).setText(String.valueOf(property.days_on_market));
         row.getCell(11).setText(String.format("R %.2f", property.list_price));
+    }
+
+    private void createSoldTable(XWPFDocument document, List<DatabaseFunctions.PropertySold> properties) {
+
+        XWPFTable tableSold = document.createTable(1, 13);
+        insertTableHeaderSold(tableSold);
+
+        tableSold.setWidth("100%");
+
+
+        for (DatabaseFunctions.PropertySold propertySold : properties) {
+            XWPFTableRow row = tableSold.createRow();
+            insertSoldPropertyData(row, propertySold);
+        }
+    }
+
+    // Insert table headers
+    private void insertTableHeaderSold(XWPFTable tableSold) {
+        XWPFTableRow headerRow = tableSold.getRow(0);
+        headerRow.getCell(0).setText("Address");
+        headerRow.getCell(1).setText("Erf Size");
+        headerRow.getCell(2).setText("Living Room");
+        headerRow.getCell(3).setText("Bedrooms");
+        headerRow.getCell(4).setText("Bathrooms");
+        headerRow.getCell(5).setText("Garage");
+        headerRow.getCell(6).setText("Pool");
+        headerRow.getCell(7).setText("Flat");
+        headerRow.getCell(8).setText("Domestic Quarters");
+        headerRow.getCell(9).setText("Other Details");
+        headerRow.getCell(10).setText("Days on the market");
+        headerRow.getCell(11).setText("List Price");
+        headerRow.getCell(12).setText("Sold Price");
+    }
+
+    // Insert property data into a row
+    private void insertSoldPropertyData(XWPFTableRow row, DatabaseFunctions.PropertySold propertySold) {
+        row.getCell(0).setText(propertySold.address);
+        row.getCell(1).setText(String.valueOf(propertySold.erf_size));
+        row.getCell(2).setText(String.valueOf(propertySold.living_room));
+        row.getCell(3).setText(String.valueOf(propertySold.bedroom));
+        row.getCell(4).setText(String.valueOf(propertySold.bathroom));
+        row.getCell(5).setText(String.valueOf(propertySold.garage));
+        row.getCell(6).setText(propertySold.pool ? "Yes" : "No");
+        row.getCell(7).setText(propertySold.flat ? "Yes" : "No");
+        row.getCell(8).setText(propertySold.domestic_quar ? "Yes" : "No");
+        row.getCell(9).setText(propertySold.other_detail);
+        row.getCell(10).setText(String.valueOf(propertySold.days_on_market));
+        row.getCell(11).setText(String.format("R %.2f", propertySold.list_price));
+        row.getCell(12).setText(String.format("R %.2f", propertySold.sold_price));
     }
 
 }
